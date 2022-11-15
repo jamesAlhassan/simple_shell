@@ -12,7 +12,7 @@ char *read_cmd(void)
 
 	while (fgets(buf, 1024, stdin))
 	{
-		int buflen = strlen(buf);
+		int buflen = _strlen(buf);
 
 		if (!ptr)
 			ptr = malloc(buflen + 1);
@@ -33,7 +33,7 @@ char *read_cmd(void)
 			fprintf(stderr, "error: failed to alloc buffer: %s\n", strerror(errno));
 			return (NULL);
 		}
-		strcpy(ptr + ptrlen, buf);
+		_strcpy(ptr + ptrlen, buf);
 
 		ptrlen += buflen;
 	}
