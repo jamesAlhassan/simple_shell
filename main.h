@@ -27,6 +27,8 @@ struct token_s
 	char *text;
 };
 
+extern struct token_s eof_token;
+
 void print_prompt(void);
 int _strlen(char *s);
 char *_strcpy(char *dest, char *src);
