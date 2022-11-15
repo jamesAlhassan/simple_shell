@@ -16,6 +16,8 @@ char *search_path(char *file)
 	char *PATH = getenv("PATH");
 	char *p = PATH;
 	char *p2;
+	int plen;
+	struct stat st;
 
 	while (p && *p)
 	{
@@ -24,7 +26,7 @@ char *search_path(char *file)
 		{
 			p2++;
 		}
-		int plen = p2 - p;
+		plen = p2 - p;
 
 		if (!plen)
 		{
@@ -44,7 +46,6 @@ char *search_path(char *file)
 
 		strcat(path, file);
 
-		struct stat st;
 
 		if (stat(path, &st) == 0)
 		{
@@ -138,6 +139,12 @@ static inline void free_argv(int argc, char **argv)
  */
 int do_simple_command(struct node_s *node)
 {
+	int argc = 0;
+	long max_args = 255;
+	char *argv[max_args + 1];	/* keep 1 for the terminating NULL arg */
+	char *str;
+	int status = 0;
+
 	if (!node)
 	{
 		return (0);
@@ -148,11 +155,6 @@ int do_simple_command(struct node_s *node)
 	{
 		return (0);
 	}
-
-	int argc = 0;
-	long max_args = 255;
-	char *argv[max_args + 1];	/* keep 1 for the terminating NULL arg */
-	char *str;
 
 	while (child)
 	{
@@ -197,7 +199,6 @@ int do_simple_command(struct node_s *node)
 		fprintf(stderr, "error: failed to fork command: %s\n", strerror(errno));
 		return (0);
 	}
-	int status = 0;
 	waitpid(child_pid, &status, 0);
 	free_argv(argc, argv);
 	return (1);
