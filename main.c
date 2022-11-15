@@ -14,8 +14,15 @@ int main(void)
 	{
 		print_prompt();
 		read = getline(&lineptr, &n, stdin);
+
+		struct source_s src;
+
+		src.buffer = lineptr;
+		src.buffsize = strlen(lineptr);
+		src.curpos = INIT_SRC_POS;
+
+		free(lineptr);
 	}
-	free(lineptr);
 	return (0);
 }
 
