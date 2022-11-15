@@ -1,8 +1,7 @@
 #include "main.h"
 
-struct token_s eof_token = 
-{
-    .text_len = 0,
+struct token_s eof_token = {
+	.text_len = 0,
 };
 
 
@@ -16,12 +15,13 @@ void add_to_buf(char c)
 	if (tok_bufindex >= tok_bufsize)
 
 {
-	char *tmp = realloc(tok_buf, tok_bufsize*2);
-	if(!tmp)
+	char *tmp = realloc(tok_buf, tok_bufsize * 2);
+
+	if (!tmp)
 	{
-        	errno = ENOMEM;
-        	return;
-        }
+		errno = ENOMEM;
+		return;
+	}
 
 	tok_buf = tmp;
 	tok_bufsize *= 2;
@@ -30,28 +30,28 @@ void add_to_buf(char c)
 
 struct token_s *create_token(char *str)
 {
-    struct token_s *tok = malloc(sizeof(struct token_s));
-    
-    if(!tok)
-    {
-        return NULL;
-    }
+	struct token_s *tok = malloc(sizeof(struct token_s));
 
-    memset(tok, 0, sizeof(struct token_s));
-    tok->text_len = strlen(str);
-    
-    char *nstr = malloc(tok->text_len+1);
-    
-    if(!nstr)
-    {
-        free(tok);
-        return NULL;
-    }
-    
-    strcpy(nstr, str);
-    tok->text = nstr;
-    
-    return tok;
+	if (!tok)
+{
+	return (NULL);
+}
+
+	memset(tok, 0, sizeof(struct token_s));
+	tok->text_len = strlen(str);
+
+	char *nstr = malloc(tok->text_len + 1);
+
+	if (!nstr)
+	{
+		free(tok);
+		return (NULL);
+	}
+
+	strcpy(nstr, str);
+	tok->text = nstr;
+
+	return (tok);
 }
 
 void free_token(struct token_s *tok)
