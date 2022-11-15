@@ -38,5 +38,5 @@ void add_to_buf(char c);
 struct token_s *create_token(char *str);
 void free_token(struct token_s *tok);
 struct token_s *tokenize(struct source_s *src);
-
+struct node_s *parse_simple_command(struct token_s *tok);
 #endif
