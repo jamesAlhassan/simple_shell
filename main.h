@@ -4,6 +4,11 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include <string.h>
+#include <errno.h>
+
+#include "scanner.h"
+#include "source.h"
 
 struct source_s
 {
