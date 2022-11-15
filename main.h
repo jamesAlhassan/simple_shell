@@ -12,6 +12,13 @@ struct source_s
 	long curpos;
 };
 
+struct token_s
+{
+	struct source_s *src;
+	int text_len;
+	char *text;
+};
+
 void print_prompt(void);
 int _strlen(char *s);
 char *_strcpy(char *dest, char *src);
