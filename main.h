@@ -6,7 +6,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include <errno.h>
-
 #include "scanner.h"
 #include "source.h"
 
