@@ -20,7 +20,7 @@ int main(void)
 		src.buffer = lineptr;
 		src.buffsize = strlen(lineptr);
 		src.curpos = INIT_SRC_POS;
-
+		int parse_and_execute(struct source_s *src);
 		free(lineptr);
 	}
 	return (0);
