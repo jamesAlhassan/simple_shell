@@ -5,6 +5,10 @@
 #include <unistd.h>
 #include <stdlib.h>
 
+#define EOF				(-1)
+#define ERRCHAR			(0)
+#define INIT_SRC_POS	(-2)
+
 struct source_s
 {
 	char *buffer;
