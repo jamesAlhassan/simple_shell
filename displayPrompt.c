@@ -1,7 +1,7 @@
-#include <stdio.h>
+
 #include "main.h"
 
-void print_prompt1(void)
+void print_prompt(void)
 {
     fprintf(stdout, "$ ");
 }
