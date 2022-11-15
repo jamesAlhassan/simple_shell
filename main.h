@@ -5,6 +5,12 @@
 #include <unistd.h>
 #include <stdlib.h>
 
+struct source_s
+{
+	char *buffer;
+	long buffsize;
+	long curpos;
+};
 
 void print_prompt(void);
 int _strlen(char *s);
