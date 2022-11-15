@@ -35,35 +35,28 @@ void add_to_buf(char c)
 struct token_s *create_token(char *str)
 {
 	struct token_s *tok = malloc(sizeof(struct token_s));
+	char *nstr;
 
 	if (!tok)
-{
-	return (NULL);
-}
+		return (NULL);
 
 	memset(tok, 0, sizeof(struct token_s));
 	tok->text_len = strlen(str);
-
-	char *nstr = malloc(tok->text_len + 1);
-
+	nstr = malloc(tok->text_len + 1);
 	if (!nstr)
 	{
 		free(tok);
 		return (NULL);
 	}
-
 	strcpy(nstr, str);
 	tok->text = nstr;
-
 	return (tok);
 }
 
 void free_token(struct token_s *tok)
 {
 	if (tok->text)
-	{
 		free(tok->text);
-	}
 	free(tok);
 }
 
@@ -71,13 +64,13 @@ void free_token(struct token_s *tok)
 struct token_s *tokenize(struct source_s *src)
 {
     int  endloop = 0;
+	char nc;
 
 	if (!src || !src->buffer || !src->buffsize)
 	{
 	    errno = ENODATA;
 		return (&eof_token);
 	}
-
 	if (!tok_buf)
 	{
 	    tok_bufsize = 1024;
@@ -92,7 +85,7 @@ struct token_s *tokenize(struct source_s *src)
 	tok_bufindex     = 0;
 	tok_buf[0]       = '\0';
 
-	char nc = next_char(src);
+	nc = next_char(src);
 
 	if (nc == ERRCHAR || nc == EOF)
 	{
