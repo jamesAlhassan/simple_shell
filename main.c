@@ -9,13 +9,12 @@ int main(void)
 	 char *lineptr;
 	 size_t n;
 	 int read;
+struct source_s src;
 
 	while (1)
 	{
 		print_prompt();
 		read = getline(&lineptr, &n, stdin);
-
-		struct source_s src;
 
 		src.buffer = lineptr;
 		src.buffsize = strlen(lineptr);
