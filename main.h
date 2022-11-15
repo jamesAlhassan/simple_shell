@@ -39,4 +39,8 @@ struct token_s *create_token(char *str);
 void free_token(struct token_s *tok);
 struct token_s *tokenize(struct source_s *src);
 struct node_s *parse_simple_command(struct token_s *tok);
+char *search_path(char *file);
+int do_exec_cmd(int argc, char **argv);
+int do_simple_command(struct node_s *node);
+
 #endif
