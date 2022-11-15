@@ -20,8 +20,8 @@ struct source_s src;
 		src.buffsize = strlen(lineptr);
 		src.curpos = INIT_SRC_POS;
 		parse_and_execute(&src);
-		free(lineptr);
 	}
+	free(lineptr);
 	return (0);
 }
 

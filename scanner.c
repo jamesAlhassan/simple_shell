@@ -11,10 +11,6 @@ struct token_s eof_token = {
 
 void add_to_buf(char c)
 {
-	char *tok_buf = NULL;
-	int   tok_bufsize  = 0;
-	int   tok_bufindex = -1;
-
 	tok_buf[tok_bufindex++] = c;
 	if (tok_bufindex >= tok_bufsize)
 
