@@ -65,6 +65,7 @@ struct token_s *tokenize(struct source_s *src)
 {
     int  endloop = 0;
 	char nc;
+	struct token_s *tok;
 
 	if (!src || !src->buffer || !src->buffsize)
 	{
@@ -131,7 +132,7 @@ struct token_s *tokenize(struct source_s *src)
 	}
 	tok_buf[tok_bufindex] = '\0';
 
-	struct token_s *tok = create_token(tok_buf);
+	tok = create_token(tok_buf);
 	if (!tok)
 	{
 		fprintf(stderr, "error: failed to alloc buffer: %s\n", strerror(errno));
