@@ -23,12 +23,13 @@ void unget_char(struct source_s *src)
  */
 char next_char(struct source_s *src)
 {
+	char c1 = 0;
+
 	if (!src || !src->buffer)
 	{
 		errno  = ENODATA;
 		return (ERRCHAR);
 	}
-	char c1 = 0;
 
 	if (src->curpos == INIT_SRC_POS)
 	{
@@ -54,12 +55,14 @@ char next_char(struct source_s *src)
  */
 char peek_char(struct source_s *src)
 {
+	long pos = src->curpos;
+
 	if (!src || !src->buffer)
 	{
 		errno = ENODATA;
 		return (ERRCHAR);
 	}
-	long pos = src->curpos;
+
 
 	if (pos == INIT_SRC_POS)
 	{
