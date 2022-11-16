@@ -10,7 +10,7 @@
 
 
 #define EOF				(-1)
-#define ERRCHAR			(0)
+#define ERRCHAR			(-3)
 #define INIT_SRC_POS	(-2)
 
 struct source_s
