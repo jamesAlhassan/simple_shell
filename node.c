@@ -45,51 +45,50 @@ void add_child_node(struct node_s *parent, struct node_s *child)
 
 void set_node_val_str(struct node_s *node, char *val)
 {
-    node->val_type = VAL_STR;
+	node->val_type = VAL_STR;
 
-    if(!val)
-    {
-        node->val.str = NULL;
-    }
-    else
-    {
-        char *val2 = malloc(strlen(val)+1);
-    
-    	if(!val2)
-        {
-            node->val.str = NULL;
-        }
-        else
-        {
-            strcpy(val2, val);
-            node->val.str = val2;
-        }
-    }
+	if (!val)
+	{
+		node->val.str = NULL;
+	}
+	else
+	{
+		char *val2 = malloc(strlen(val) + 1);
+
+		if (!val2)
+		{
+			node->val.str = NULL;
+		}
+		else
+		{
+			strcpy(val2, val);
+			node->val.str = val2;
+		}
+	}
 }
 
 
 void free_node_tree(struct node_s *node)
 {
-    if(!node)
-    {
-        return;
-    }
+	if (!node)
+	{
+		return;
+	}
+	struct node_s *child = node->first_child;
 
-    struct node_s *child = node->first_child;
-    
-    while(child)
-    {
-        struct node_s *next = child->next_sibling;
-        free_node_tree(child);
-        child = next;
-    }
-    
-    if(node->val_type == VAL_STR)
-    {
-        if(node->val.str)
-        {
-            free(node->val.str);
-        }
-    }
-    free(node);
+	while (child)
+	{
+		struct node_s *next = child->next_sibling;
+
+		free_node_tree(child);
+		child = next;
+	}
+	if (node->val_type == VAL_STR)
+	{
+		if (node->val.str)
+		{
+			free(node->val.str);
+		}
+	}
+	free(node);
 }
