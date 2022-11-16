@@ -4,44 +4,42 @@
 
 struct node_s *new_node(enum node_type_e type)
 {
-    struct node_s *node = malloc(sizeof(struct node_s));
+struct node_s *node = malloc(sizeof(struct node_s));
 
-    if(!node)
-    {
-        return NULL;
-    }
-    
-    memset(node, 0, sizeof(struct node_s));
-    node->type = type;
-    
-    return node;
+if (!node)
+{
+	return (NULL);
+}
+
+	memset(node, 0, sizeof(struct node_s));
+	node->type = type;
+	return (node);
 }
 
 
 void add_child_node(struct node_s *parent, struct node_s *child)
 {
-    if(!parent || !child)
-    {
-        return;
-    }
+	if (!parent || !child)
+	{
+		return;
+	}
 
-    if(!parent->first_child)
-    {
-        parent->first_child = child;
-    }
-    else
-    {
-        struct node_s *sibling = parent->first_child;
-    
-    	while(sibling->next_sibling)
-        {
-            sibling = sibling->next_sibling;
-        }
-    
-    	sibling->next_sibling = child;
-        child->prev_sibling = sibling;
-    }
-    parent->children++;
+	if (!parent->first_child)
+	{
+		parent->first_child = child;
+	}
+	else
+	{
+		struct node_s *sibling = parent->first_child;
+
+		while (sibling->next_sibling)
+		{
+			sibling = sibling->next_sibling;
+		}
+		sibling->next_sibling = child;
+		child->prev_sibling = sibling;
+	}
+	parent->children++;
 }
 
 
