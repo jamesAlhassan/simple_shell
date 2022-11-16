@@ -1,9 +1,5 @@
 #include "main.h"
 #include "node.h"
-#include <stdlib.h>
-#include <sys/stat.h>
-#include <sys/wait.h>
-#include <unistd.h>
 
 /**
  * search_path - searches all directories listed in PATH variable
