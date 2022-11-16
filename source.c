@@ -28,7 +28,7 @@ char next_char(struct source_s *src)
 	if (!src || !src->buffer)
 	{
 		errno  = ENODATA;
-		return (ERRCHAR);
+		return (-ERRCHAR);
 	}
 
 	if (src->curpos == INIT_SRC_POS)
@@ -60,7 +60,7 @@ char peek_char(struct source_s *src)
 	if (!src || !src->buffer)
 	{
 		errno = ENODATA;
-		return (ERRCHAR);
+		return (-ERRCHAR);
 	}
 
 

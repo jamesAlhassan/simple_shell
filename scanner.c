@@ -1,21 +1,27 @@
 #include "main.h"
 
-char *tok_buf = NULL;
-int tok_bufsize = 0;
-int tok_bufindex = -1;
-
 struct token_s eof_token = {
 	.text_len = 0,
 };
 
 
+struct source_s src_file = {
+	.buffer = NULL,
+	.buffsize = 0,
+	.curpos = -1,
+};
+
+/**
+ * add_to_buf - adds a single char to the token buffer
+ * @c: char to add
+ */
 void add_to_buf(char c)
 {
-	tok_buf[tok_bufindex++] = c;
-	if (tok_bufindex >= tok_bufsize)
+	src_file.buffer[src_file.curpos++] = c;
+	if (src_file.curpos >= src_file.buffsize)
 
 {
-	char *tmp = realloc(tok_buf, tok_bufsize * 2);
+	char *tmp = realloc(src_file.buffer, src_file.buffsize * 2);
 
 	if (!tmp)
 	{
@@ -23,11 +29,16 @@ void add_to_buf(char c)
 		return;
 	}
 
-	tok_buf = tmp;
-	tok_bufsize *= 2;
+	src_file.buffer = tmp;
+	src_file.buffsize *= 2;
 }
 }
 
+/**
+ * create_token - takes a string and converts it to struct
+ * @str: string to convert
+ * Return: a new struct base of the string
+ */
 struct token_s *create_token(char *str)
 {
 	struct token_s *tok = malloc(sizeof(struct token_s));
@@ -49,6 +60,10 @@ struct token_s *create_token(char *str)
 	return (tok);
 }
 
+/**
+ * free_token - frees the memory used by a token struct, and token test
+ * @tok: token to free
+ */
 void free_token(struct token_s *tok)
 {
 	if (tok->text)
@@ -57,9 +72,14 @@ void free_token(struct token_s *tok)
 }
 
 
+/**
+ * tokenize - tokenize the source or command
+ * @src: source struct
+ * Return: struct
+ */
 struct token_s *tokenize(struct source_s *src)
 {
-    int  endloop = 0;
+	int  endloop = 0;
 	char nc;
 	struct token_s *tok;
 
@@ -68,19 +88,19 @@ struct token_s *tokenize(struct source_s *src)
 	    errno = ENODATA;
 		return (&eof_token);
 	}
-	if (!tok_buf)
+	if (!src_file.buffer)
 	{
-	    tok_bufsize = 1024;
-		tok_buf = malloc(tok_bufsize);
-		if (!tok_buf)
+	    src_file.buffsize = 1024;
+		src_file.buffer = malloc(src_file.buffsize);
+		if (!src_file.buffer)
 		{
 			errno = ENOMEM;
 			return (&eof_token);
 		}
 	}
 
-	tok_bufindex     = 0;
-	tok_buf[0]       = '\0';
+	src_file.curpos     = 0;
+	src_file.buffer[0]       = '\0';
 
 	nc = next_char(src);
 
@@ -94,13 +114,13 @@ struct token_s *tokenize(struct source_s *src)
 		{
 			case ' ':
 			case '\t':
-				if (tok_bufindex > 0)
+				if (src_file.curpos > 0)
 				{
 					endloop = 1;
 				}
 				break;
 			case '\n':
-				if (tok_bufindex > 0)
+				if (src_file.curpos > 0)
 				{
 					unget_char(src);
 				}
@@ -118,17 +138,17 @@ struct token_s *tokenize(struct source_s *src)
 			break;
 	} while ((nc = next_char(src)) != EOF);
 
-	if (tok_bufindex == 0)
+	if (src_file.curpos == 0)
 	{
 		return (&eof_token);
 	}
-	if (tok_bufindex >= tok_bufsize)
+	if (src_file.curpos >= src_file.buffsize)
 	{
-		tok_bufindex--;
+		src_file.curpos--;
 	}
-	tok_buf[tok_bufindex] = '\0';
+	src_file.buffer[src_file.curpos] = '\0';
 
-	tok = create_token(tok_buf);
+	tok = create_token(src_file.buffer);
 	if (!tok)
 	{
 		fprintf(stderr, "error: failed to alloc buffer: %s\n", strerror(errno));
