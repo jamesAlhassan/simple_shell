@@ -1,6 +1,11 @@
 #include "node.h"
 #include "main.h"
 
+/**
+ *new_node - enumerator
+ *@type: enum type
+ * Return: struct
+ */
 
 struct node_s *new_node(enum node_type_e type)
 {
@@ -16,6 +21,12 @@ if (!node)
 	return (node);
 }
 
+/**
+ * add_child_node - adds a child node
+ * @parent: parent node
+ * @child: child node
+ * Return: Void
+ */
 
 void add_child_node(struct node_s *parent, struct node_s *child)
 {
@@ -42,6 +53,12 @@ void add_child_node(struct node_s *parent, struct node_s *child)
 	parent->children++;
 }
 
+/**
+ * set_node_val_str - sets a string of node
+ * @node: node to set
+ * @val: node's value
+ * Return: Void
+ */
 
 void set_node_val_str(struct node_s *node, char *val)
 {
@@ -67,6 +84,12 @@ void set_node_val_str(struct node_s *node, char *val)
 	}
 }
 
+/**
+ * free_node_tree -free node memory
+ * @node: node which mem to be freed
+ *
+ * Return: Void
+ */
 
 void free_node_tree(struct node_s *node)
 {
