@@ -316,3 +316,19 @@ $
 * Handling dynamic memory allocation in a large program
 * Pair programming and team work
 * Building a test suite to check our own code
+
+
+## Authors ##
+
+👤 **JAMES ALHASSAN**
+
+- GitHub: [@jamesAlhassan](https://github.com/jamesAlhassan)
+- Twitter: [@JamesAlhassan4](https://twitter.com/JamesAlhassan4)
+- LinkedIn: [LinkedIn](https://www.linkedin.com/in/james-alhassan-069b3421b/)
+
+
+👤 ** **
+
+- GitHub: [@]()
+- Twitter: [@]()
+- LinkedIn: [LinkedIn]()
