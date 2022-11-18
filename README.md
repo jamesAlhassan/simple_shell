@@ -327,8 +327,7 @@ $
 - LinkedIn: [LinkedIn](https://www.linkedin.com/in/james-alhassan-069b3421b/)
 
 
-👤 ** **
+👤 **ABDUL-FATAHU HARDI**
 
-- GitHub: [@]()
-- Twitter: [@]()
-- LinkedIn: [LinkedIn]()
+- GitHub: [@at-tawlib](https://github.com/at-tawlib)
+- LinkedIn: [LinkedIn](https://www.linkedin.com/in/abdul-fatahu-hardi-52b31560/)
