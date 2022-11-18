@@ -33,3 +33,42 @@
 * The program is ready to receive a new command
 * To exit: press Ctrl-D or enter "exit" (with or without a status)
 * Works also in non interactive mode
+
+### Compilation
+
+`gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh`
+
+### Invocation
+
+Usage: **hsh** [filename]
+
+To invoke **hsh**, compile all `.c` files in the repository and run the resulting executable.
+
+**hsh** can be invoked both interactively and non-interactively. If **hsh** is invoked with standard input not connected to a terminal, it reads and executes received commands in order.
+
+Example:
+```
+$ echo "echo 'hello'" | ./hsh
+'hello'
+$
+```
+
+If **hsh** is invoked with standard input connected to a terminal (determined by [isatty](https://linux.die.net/man/3/isatty)(3)), an *interactive* shell is opened. When executing interactively, **hsh** displays the prompt `$ ` when it is ready to read a command.
+
+Example:
+```
+$./hsh
+$
+```
+
+Alternatively, if command line arguments are supplied upon invocation, **hsh** treats the first argument as a file from which to read commands. The supplied file should contain one command per line. **hsh** runs each of the commands contained in the file in order before exiting.
+
+Example:
+```
+$ cat test
+echo 'hello'
+$ ./hsh test
+'hello'
+$
+```
+
